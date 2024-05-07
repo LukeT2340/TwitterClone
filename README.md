@@ -15,8 +15,8 @@ A simple Twitter clone project built with Express.js and React.js, featuring use
   - Login: Registered users can log in to their accounts securely.
   - Logout: Users can log out of their accounts.
 - Session management: User sessions are managed using `express-session`.
-- Basic sign-up page: A simple sign-up page resembling Twitter's design.
-
+- Basic sign-up and login pages: Simple sign-up and login pages resembling Twitter's design.
+- Home page that is different depending on whether the user is logged in or not.
 ## Technologies Used
 
 - **Front-end**:

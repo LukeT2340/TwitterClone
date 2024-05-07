@@ -2,7 +2,7 @@ const express = require('express');
 const session = require('express-session');
 const crypto = require('crypto');
 const router = express.Router();
-const { addUser } = require('../utils/db.js');
+const { addUser, query } = require('../utils/db.js');
 
 // Set up session middleware
 router.use(session({
@@ -58,8 +58,8 @@ const signUpHandler = async (req, res) => {
     try {
         const hashedPassword = hashString(password);
         const result = await addUser(username, hashedPassword, email);
-        console.log('User added successfully:', result);
-    } catch (error) {
+        res.send(result);
+      } catch (error) {
         console.log(error);
         if (error.code === "ER_DUP_ENTRY") {
             res.status(400).json({ error: "DuplicateError", message: "Someone with the entered username or email already exists." }); 
@@ -78,7 +78,7 @@ router.post('/login', (req, res) => {
     const { username, password } = req.body;
     const hashedPassword = hashString(password);
 
-    const sql = 'SELECT * FROM users WHERE username = ? AND hashed_password = ?';
+    const sql = 'SELECT * FROM users WHERE name = ? AND hashed_password = ?';
     const params = [username, hashedPassword];
     query(sql, params, (err, results) => {
       if (err) {

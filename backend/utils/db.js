@@ -18,11 +18,9 @@ const addUser = (username, hashedPassword, email) => {
             [username, username, hashedPassword, dateRegistered, email],
             (err, result) => {
                 if (err) {
-                    console.error('Error adding user:', err);
                     reject(err);
                     return;
                 }
-                console.log('User added successfully');
                 resolve(result);
             }
         );
@@ -31,7 +29,7 @@ const addUser = (username, hashedPassword, email) => {
 
 // Function to execute MySQL queries
 const query = (sql, params, callback) => {
-    pool.getConnection((err, connection) => {
+    db.getConnection((err, connection) => {
       if (err) {
         callback(err, null);
         return;

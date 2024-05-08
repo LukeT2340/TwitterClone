@@ -17,6 +17,7 @@ A simple Twitter clone project built with Express.js and React.js, featuring use
 - Session management: User sessions are managed using `express-session`.
 - Basic sign-up and login pages: Simple sign-up and login pages resembling Twitter's design.
 - Home page that is different depending on whether the user is logged in or not.
+- Retrieve latest tweets and tweeter information from MySQL database by querying the expres API.
 ## Technologies Used
 
 - **Front-end**:

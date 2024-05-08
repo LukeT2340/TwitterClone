@@ -15,7 +15,7 @@ const addUser = (username, hashedPassword, email) => {
         const query =  'INSERT INTO users (name, handle, hashed_password, date_registered, email) VALUES (?, ?, ?, ?, ?)';
         db.query(
             query,
-            [username, username, hashedPassword, dateRegistered, email],
+            [username, username.toLowerCase(), hashedPassword, dateRegistered, email],
             (err, result) => {
                 if (err) {
                     reject(err);

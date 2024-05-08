@@ -3,12 +3,18 @@ const session = require('express-session');
 const crypto = require('crypto');
 const router = express.Router();
 const { addUser, query } = require('../utils/db.js');
+const { userInfo } = require('os');
 
 // Set up session middleware
 router.use(session({
-    secret: 'your_secret_key',
+    secret: "dawdwada",
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: true,
+    cookie: {
+      maxAge: 24 * 60 * 60 * 1000,
+      secure: false,                
+      httpOnly: true                
+    }
   }));
 
 // Checks whether username is valid
@@ -73,27 +79,30 @@ const signUpHandler = async (req, res) => {
 // Endpoint for sign up requests
 router.post('/signup', signUpHandler);
 
-// Login route
-router.post('/login', (req, res) => {
-    const { username, password } = req.body;
-    const hashedPassword = hashString(password);
+// Handle login request
+const loginHandler = async (req, res) => {
+  const { username, password } = req.body;
+  const hashedPassword = hashString(password);
 
-    const sql = 'SELECT * FROM users WHERE name = ? AND hashed_password = ?';
-    const params = [username, hashedPassword];
-    query(sql, params, (err, results) => {
-      if (err) {
-        console.error('Error querying database:', err);
-        res.status(500).json({ message: 'Internal server error' });
-        return;
-      }
-      if (results.length > 0) {
-        req.session.user = results[0];
-        res.status(200).json({ message: 'Login successful', user: results[0] });
-      } else {
-        res.status(401).json({ message: 'Invalid username or password' });
-      }
-    });
+  const sql = 'SELECT * FROM users WHERE name = ? AND hashed_password = ?';
+  const params = [username, hashedPassword];
+  query(sql, params, (err, results) => {
+    if (err) {
+      console.error('Error querying database:', err);
+      res.status(500).json({ message: 'Internal server error' });
+      return;
+    }
+    if (results.length > 0) {
+      req.session.user = results[0];
+      res.status(200).json({ message: 'Login successful', user: results[0] });
+    } else {
+      res.status(401).json({ message: 'Invalid username or password' });
+    }
   });
+};
+
+// Endpoint for login requests
+router.post('/login', loginHandler);
 
 // Logout route
 router.post('/logout', (req, res) => {

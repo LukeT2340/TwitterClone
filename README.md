@@ -5,7 +5,8 @@ A simple Twitter clone project built with Express.js and React.js, featuring use
 <div style="display: flex;">
   <img src="https://github.com/LukeT2340/TwitterClone/assets/83848772/48c1a859-3f44-4a38-95a2-5d27a6a0758b" alt="Screenshot 1" style="flex: 1; margin-right: 10px;">
   <img src="https://github.com/LukeT2340/TwitterClone/assets/83848772/87f6d21d-0c55-4cbe-8fe4-029d9bd86aac" alt="Screenshot 2" style="flex: 1; margin-right: 10px;">
-  <img src="https://github.com/LukeT2340/TwitterClone/assets/83848772/83fc731e-38f4-40a0-91d3-0c1e53ff8198" alt="Screenshot 3" style="flex: 1;">
+  <img src="https://github.com/LukeT2340/TwitterClone/assets/83848772/f5322c7f-6c5a-466f-a5d2-080be9bea6aa" alt="Screenshot 3" style="flex: 1;">
+
 </div>
 
 ## Features (So far)
